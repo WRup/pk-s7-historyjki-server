@@ -1,31 +1,44 @@
 package com.pm.historyjki.controller;
 
-import com.pm.historyjki.model.Story;
-import com.pm.historyjki.repository.StoryRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.pm.historyjki.inserter.StoryInserter;
+import com.pm.historyjki.model.Story;
+import com.pm.historyjki.service.IStoryService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("story")
 @RequiredArgsConstructor
 public class StoryController {
 
-    private final StoryRepository storyRepository;
+    private final IStoryService storyService;
 
-    @GetMapping("")
+    @GetMapping
     public List<Story> getAllStories(){
-        return storyRepository.findAll();
+        return storyService.getAllStories();
     }
 
     @GetMapping("/{id}")
     public Story getStory(@PathVariable String id){
-        return storyRepository.findById(id).orElse(new Story());
+        return storyService.getStory(id).orElseThrow(NotFoundException::new);
     }
 
-    @PostMapping("")
+    @PostMapping
     public Story addStory(@RequestBody Story story){
-        return storyRepository.save(story);
+        return storyService.addStory(story);
+    }
+
+    @PostMapping("/insert")
+    public List<Story> insertDefaultStories() {
+        return new StoryInserter(storyService).insertIntoDatabase();
     }
 }
