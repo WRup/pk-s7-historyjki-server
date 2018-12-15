@@ -10,5 +10,7 @@ public interface IStoryService {
 
     Story addStory(Story story);
 
+    Story updateStory(Story story);
+
     List<Story> getAllStories();
 }

@@ -30,4 +30,10 @@ public class StoryService implements IStoryService {
     public Story addStory(Story story){
         return storyRepository.save(story);
     }
+
+    @Override
+    public Story updateStory(Story story) {
+        storyRepository.save(story);
+        return storyRepository.findById(story.getId()).orElse(null);
+    }
 }
