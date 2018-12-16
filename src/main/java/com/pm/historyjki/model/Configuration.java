@@ -3,9 +3,10 @@ package com.pm.historyjki.model;
 import java.util.Arrays;
 import java.util.List;
 
+import lombok.Data;
+
+@Data
 public class Configuration {
 
-    public List<TagType> getTags() {
-        return Arrays.asList(TagType.values());
-    }
+    private List<TagType> tags = Arrays.asList(TagType.values());
 }
