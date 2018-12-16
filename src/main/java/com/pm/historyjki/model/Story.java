@@ -8,11 +8,16 @@ import java.util.List;
 public class Story {
 
     private String id;
-    private String authorName;
-    private String title;
-    private List<String> tags;
-    private Integer likeNumber;
-    private Integer dislikeNumber;
-    private StoryContent content;
 
+    private String authorName;
+
+    private String title;
+
+    private List<String> tags;
+
+    private Integer likeNumber;
+
+    private Integer dislikeNumber;
+
+    private StoryContent content;
 }
