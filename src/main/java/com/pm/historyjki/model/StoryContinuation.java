@@ -1,11 +1,13 @@
 package com.pm.historyjki.model;
 
-import lombok.Data;
-
 import java.util.List;
 
+import lombok.Data;
+
 @Data
-public class StoryContent {
+public class StoryContinuation {
+
+    private String starter;
 
     private String content;
 
