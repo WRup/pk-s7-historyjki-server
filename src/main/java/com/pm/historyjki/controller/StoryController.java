@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pm.historyjki.inserter.StoryInserter;
 import com.pm.historyjki.model.Story;
 import com.pm.historyjki.service.IStoryService;
 
@@ -41,10 +40,5 @@ public class StoryController {
     @PutMapping
     public Story updateStory(@RequestBody Story story) {
         return storyService.updateStory(story);
-    }
-
-    @PostMapping("/insert")
-    public List<Story> insertDefaultStories() {
-        return new StoryInserter(storyService).insertIntoDatabase();
     }
 }
